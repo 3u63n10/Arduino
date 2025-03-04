@@ -69,11 +69,66 @@ The system reads spectral data from the AS7262 sensor, logs the measurements alo
 - Monitor sensor readings via the Serial Monitor and on the attached LCD.
 - Check the SD card for log files containing the recorded data.
 
-## License
+# AS7262 Sensor Project – Seeeduino with Expansion Board
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project utilizes the AS7262 spectral sensor to capture spectral data and displays the calibrated results on an OLED display. The setup is implemented on a Seeeduino board equipped with a Seeeduino expansion board.
 
-## Acknowledgments
+## Overview
 
-- Thanks to the Arduino community and contributors of the AS726X, RTClib, and LiquidCrystal_I2C libraries.
-- Special thanks to hardware vendors for providing reliable sensor and peripheral modules.
+The project reads spectral data from the AS7262 sensor, applies a simple linear calibration, and displays the results on a 128x64 OLED using the U8g2 library. The Seeeduino expansion board simplifies the integration of peripherals, making this project suitable for rapid prototyping and portable sensor applications.
+
+## Features
+
+- **Spectral Sensing:** Captures calibrated spectral data from the AS7262 sensor.
+- **OLED Display:** Renders real-time measurement data on a 128x64 SSD1306 OLED.
+- **Simple Calibration:** Applies adjustable linear calibration parameters (slope and intercept) to sensor readings.
+- **Serial Debugging:** Outputs sensor data and calibration values to the Serial Monitor.
+- **Efficient Data Acquisition:** Waits until sensor data is ready before reading measurements.
+
+## Hardware Requirements
+
+- **Seeeduino Board** (with Seeeduino expansion board)
+- **AS7262 Sensor**
+- Breadboard, jumper wires, and necessary connectors
+
+## Software Requirements
+
+- Arduino IDE
+- Required libraries:
+  - `U8g2lib`
+  - `Wire`
+  - `SPI` (if using hardware SPI)
+  - `AS726X` (for AS7262 sensor support)
+
+## Setup and Installation
+
+1. **Hardware Assembly:**  
+   - Connect the AS7262 sensor to the Seeeduino board via I2C (SCL/SDA).
+   
+2. **Software Configuration:**  
+   - Install the required libraries using the Arduino Library Manager.
+   - Open the provided sketch and verify that the I2C pins and display settings are correct.
+   
+3. **Upload and Run:**  
+   - Upload the sketch to the Seeeduino board using the Arduino IDE.
+   - The system will begin measuring sensor data, apply calibration, and display the results on the OLED. Debug information is also sent to the Serial Monitor.
+
+## Code Structure
+
+- **setup():**  
+  Initializes the OLED display, configures the built-in LED, and starts communication with the AS7262 sensor.
+  
+- **loop():**  
+  Triggers a sensor measurement, waits for data readiness, reads calibrated sensor values, prints them to the Serial Monitor, and updates the OLED display.
+  
+- **Calibration Section:**  
+  A simple linear calibration is applied to the sensor reading using configurable slope (`a`) and intercept (`b`) values.
+
+## Usage
+
+- Assemble the Seeeduino board with the expansion shield and connect all components as specified.
+- Upload the sketch with the Arduino IDE.
+- View real-time sensor readings on the OLED display and use the Serial Monitor for debugging purposes.
+
+
+
